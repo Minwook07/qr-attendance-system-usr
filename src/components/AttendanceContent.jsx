@@ -1,6 +1,12 @@
 import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { ActionButton } from "./ActionButton";
 import { AttendanceTable } from "./AttendanceTable";
+import { useState } from "react";
+import { filterAttendance } from "../utils/attendance/filterData";
+import { exportToCsv } from "../utils/attendance/exportCsv";
+import { exportToPdf } from "../utils/attendance/exportPdf";
+import { handlePrint } from "../utils/attendance/printAttendance";
+import { exportToExcel } from "../utils/attendance/exportExcel";
 
 const dummyData = [
     {
@@ -166,6 +172,12 @@ const dummyData = [
 ]
 
 export function AttendanceContent() {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [fromDate, setFromDate] = useState("");
+    const [toDate, setToDate] = useState("");
+
+    const filteredData = filterAttendance(dummyData, searchTerm, fromDate, toDate);
+
     return (
         <>
             <h2 className="text-4xl mb-6">Attendance Content</h2>
@@ -179,6 +191,8 @@ export function AttendanceContent() {
                         <input
                             type="date"
                             id="from_date"
+                            value={fromDate}
+                            onChange={(e) => setFromDate(e.target.value)}
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
@@ -192,6 +206,8 @@ export function AttendanceContent() {
                         <input
                             type="date"
                             id="to_date"
+                            value={toDate}
+                            onChange={(e) => setToDate(e.target.value)}
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
@@ -203,19 +219,21 @@ export function AttendanceContent() {
                     type="search"
                     name="search"
                     id="search"
-                    placeholder="Search here..."
+                    placeholder="Search here by name, code, position..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="border text-black border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
             </div>
 
             <div className="flex gap-3 justify-end mb-6">
-                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => { }} />
-                <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => { }} />
-                <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => { }} />
-                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={() => { }} />
+                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => exportToCsv(filteredData)} />
+                <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => exportToPdf(filteredData)} />
+                <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => handlePrint(filteredData)} />
+                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={() => exportToExcel(filteredData)} />
             </div>
 
-            <AttendanceTable data={dummyData} />
+            <AttendanceTable data={filteredData} />
         </>
     )
 }
