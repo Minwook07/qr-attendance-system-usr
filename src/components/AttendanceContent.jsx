@@ -367,6 +367,8 @@ export function AttendanceContent() {
                         <input
                             type="date"
                             id="from_date"
+                            value={fromDate}
+                            onChange={(e) => setFromDate(e.target.value)}
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
@@ -380,6 +382,8 @@ export function AttendanceContent() {
                         <input
                             type="date"
                             id="to_date"
+                            value={toDate}
+                            onChange={(e) => setToDate(e.target.value)}
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
@@ -391,7 +395,9 @@ export function AttendanceContent() {
                     type="search"
                     name="search"
                     id="search"
-                    placeholder="Search here..."
+                    placeholder="Search here by name, code, position..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="border text-black border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
             </div>
@@ -403,7 +409,7 @@ export function AttendanceContent() {
                 <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={exportToExcel} />
             </div>
 
-            <AttendanceTable data={dummyData} />
+            <AttendanceTable data={filteredData} />
         </>
     )
 }
