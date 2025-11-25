@@ -7,6 +7,8 @@ import { exportToCsv } from "../utils/attendance/exportCsv";
 import { exportToPdf } from "../utils/attendance/exportPdf";
 import { handlePrint } from "../utils/attendance/printAttendance";
 import { exportToExcel } from "../utils/attendance/exportExcel";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
 
 const dummyData = [
     {
@@ -178,6 +180,14 @@ export function AttendanceContent() {
 
     const filteredData = filterAttendance(dummyData, searchTerm, fromDate, toDate);
 
+    const formatDate = (date) => {
+        if (!date) return "";
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    };
+
     return (
         <>
             <h2 className="text-4xl mb-6">Attendance Content</h2>
@@ -188,11 +198,11 @@ export function AttendanceContent() {
                         <label htmlFor="from_date" className="mb-2 text-white font-medium">
                             From Date
                         </label>
-                        <input
-                            type="date"
-                            id="from_date"
-                            value={fromDate}
-                            onChange={(e) => setFromDate(e.target.value)}
+                        <DatePicker
+                            selected={fromDate ? new Date(fromDate) : null}
+                            onChange={(date) => setFromDate(formatDate(date))}
+                            isClearable
+                            placeholderText="Select from date"
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
@@ -203,11 +213,11 @@ export function AttendanceContent() {
                         <label htmlFor="to_date" className="mb-2 text-white font-medium">
                             To Date
                         </label>
-                        <input
-                            type="date"
-                            id="to_date"
-                            value={toDate}
-                            onChange={(e) => setToDate(e.target.value)}
+                        <DatePicker
+                            selected={toDate ? new Date(toDate) : null}
+                            onChange={(date) => setToDate(formatDate(date))}
+                            isClearable
+                            placeholderText="Select from date"
                             className="border text-black border-gray-300 rounded-md p-2 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 
                                focus:border-transparent"
