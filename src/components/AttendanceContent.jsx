@@ -2,6 +2,11 @@ import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-so
 import { ActionButton } from "./ActionButton";
 import { AttendanceTable } from "./AttendanceTable";
 import { useState } from "react";
+import { filterAttendance } from "../utils/attendance/filterData";
+import { exportToCsv } from "../utils/attendance/exportCsv";
+import { exportToPdf } from "../utils/attendance/exportPdf";
+import { handlePrint } from "../utils/attendance/printAttendance";
+import { exportToExcel } from "../utils/attendance/exportExcel";
 
 const dummyData = [
     {
@@ -171,16 +176,7 @@ export function AttendanceContent() {
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
-    const filteredData = dummyData.filter(item => {
-        const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.position.toLowerCase().includes(searchTerm.toLowerCase());
-
-        const matchesDateRange = (!fromDate || item.date >= fromDate) &&
-            (!toDate || item.date <= toDate);
-
-        return matchesSearch && matchesDateRange;
-    });
+    const filteredData = filterAttendance(dummyData, searchTerm, fromDate, toDate);
 
     return (
         <>
@@ -231,10 +227,10 @@ export function AttendanceContent() {
             </div>
 
             <div className="flex gap-3 justify-end mb-6">
-                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={exportToCSV} />
-                <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={exportToPDF} />
-                <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={handlePrint} />
-                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={exportToExcel} />
+                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => exportToCsv(filteredData)} />
+                <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => exportToPdf(filteredData)} />
+                <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => handlePrint(filteredData)} />
+                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={() => exportToExcel(filteredData)} />
             </div>
 
             <AttendanceTable data={filteredData} />
