@@ -9,14 +9,15 @@ import { handlePrint } from "../utils/attendance/printAttendance";
 import { exportToExcel } from "../utils/attendance/exportExcel";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+import { formatDate } from "../utils/date";
 
-const dummyData = [
+export const dummyData = [
     {
         id: "1",
         name: "Kim Ji-soo",
         code: "EMP001",
         position: "Backend Dev",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:00",
         outTime: "17:00",
         workHour: "9h",
@@ -32,7 +33,7 @@ const dummyData = [
         name: "Roseanne Park (Rosé)",
         code: "EMP002",
         position: "Testing",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:15",
         outTime: "17:00",
         workHour: "8.75h",
@@ -48,7 +49,7 @@ const dummyData = [
         name: "Kim Jennie",
         code: "EMP003",
         position: "Frontend Dev",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:05",
         outTime: "17:10",
         workHour: "9.05h",
@@ -64,7 +65,7 @@ const dummyData = [
         name: "Hwang Ye-ji",
         code: "EMP004",
         position: "UI/UX Designer",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:10",
         outTime: "17:00",
         workHour: "8.83h",
@@ -80,7 +81,7 @@ const dummyData = [
         name: "Choi Ji-su (Lia)",
         code: "EMP005",
         position: "Project Manager",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "07:55",
         outTime: "17:00",
         workHour: "9.08h",
@@ -96,7 +97,7 @@ const dummyData = [
         name: "Shin Ryu-jin",
         code: "EMP006",
         position: "QA Engineer",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:20",
         outTime: "17:00",
         workHour: "8.66h",
@@ -112,7 +113,7 @@ const dummyData = [
         name: "Lee Chae-ryeong",
         code: "EMP007",
         position: "DevOps Engineer",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:00",
         outTime: "17:30",
         workHour: "9.5h",
@@ -128,7 +129,7 @@ const dummyData = [
         name: "Shin Yu-na",
         code: "00X44M",
         position: "Support Engineer",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:12",
         outTime: "17:05",
         workHour: "8.88h",
@@ -144,7 +145,7 @@ const dummyData = [
         name: "Hirai Momo",
         code: "00X44N",
         position: "Full Stack Dev",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "07:59",
         outTime: "17:20",
         workHour: "9.35h",
@@ -160,7 +161,7 @@ const dummyData = [
         name: "Ning Yizhuo (NingNing)",
         code: "00X44O",
         position: "Intern",
-        date: "2025-11-19",
+        date: "2025-11-25",
         inTime: "08:30",
         outTime: "17:00",
         workHour: "8.5h",
@@ -179,14 +180,6 @@ export function AttendanceContent() {
     const [toDate, setToDate] = useState("");
 
     const filteredData = filterAttendance(dummyData, searchTerm, fromDate, toDate);
-
-    const formatDate = (date) => {
-        if (!date) return "";
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, "0");
-        const day = date.getDate().toString().padStart(2, "0");
-        return `${year}-${month}-${day}`;
-    };
 
     return (
         <>
