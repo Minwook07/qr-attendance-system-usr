@@ -1,14 +1,26 @@
 import { faDatabase, faQrcode, faUserClock, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { CardDashboard } from "./CardDashboard"
+import { dummyData } from "./AttendanceContent"
+import { formatDate } from "../utils/date";
 
-const items = [
-    { num: 4, title: 'Total Users', bg: 'bg-amber-500', icon: faUsers },
-    { num: 2, title: 'Total Come late Today', bg: 'bg-red-600', icon: faUserClock },
-    { num: 20, title: 'Total Attendance Today', bg: 'bg-orange-600', icon: faDatabase },
-    { num: 25, title: 'Total QR', bg: 'bg-gray-600', icon: faQrcode }
-]
 
 export function Dashboard() {
+    const today = formatDate(new Date());
+    const totalUsr = dummyData.length;
+    const totalComeLate = dummyData.filter(
+        user => user.date === today && user.lateTime !== "0h" && user.lateTime !== "0m"
+    ).length;
+    const totalAttendanceToday = dummyData.filter(
+        user => user.date === today
+    ).length;
+
+
+    const items = [
+        { num: totalUsr, title: 'Total Users', bg: 'bg-amber-500', icon: faUsers },
+        { num: totalComeLate, title: 'Total Come late Today', bg: 'bg-red-600', icon: faUserClock },
+        { num: totalAttendanceToday, title: 'Total Attendance Today', bg: 'bg-orange-600', icon: faDatabase },
+        { num: 25, title: 'Total QR', bg: 'bg-gray-600', icon: faQrcode }
+    ]
     return (
         <>
             <h2 className="text-4xl mb-4">Dashboard</h2>
