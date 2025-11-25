@@ -182,6 +182,24 @@ export function AttendanceContent() {
         return matchesSearch && matchesDateRange;
     });
 
+    const exportToCSV = () => {
+        const headers = ["Name", "Code", "Position", "Date", "In Time", "Out Time", "Work Hour", "Over Time", "Late Time", "Early Out", "In Location", "Out Location"];
+        const csvContent = [
+            headers.join(","),
+            ...filteredData.map(row =>
+                [row.name, row.code, row.position, row.date, row.inTime, row.outTime, row.workHour, row.overTime, row.lateTime, row.earlyOutTime, row.inLocation, row.outLocation]
+                    .map(field => `"${field}"`)
+                    .join(",")
+            )
+        ].join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
+        link.click();
+    };
+
     const exportToExcel = () => {
         const headers = ["Name", "Code", "Position", "Date", "In Time", "Out Time", "Work Hour", "Over Time", "Late Time", "Early Out", "In Location", "Out Location"];
 
@@ -222,7 +240,7 @@ export function AttendanceContent() {
         link.download = `attendance_${new Date().toISOString().split('T')[0]}.xls`;
         link.click();
     };
-    
+
     return (
         <>
             <h2 className="text-4xl mb-6">Attendance Content</h2>
@@ -266,7 +284,7 @@ export function AttendanceContent() {
             </div>
 
             <div className="flex gap-3 justify-end mb-6">
-                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => { }} />
+                <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={exportToCSV} />
                 <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => { }} />
                 <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => { }} />
                 <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={exportToExcel} />
