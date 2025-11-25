@@ -1,6 +1,7 @@
 import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { ActionButton } from "./ActionButton";
 import { AttendanceTable } from "./AttendanceTable";
+import { useState } from "react";
 
 const dummyData = [
     {
@@ -166,6 +167,62 @@ const dummyData = [
 ]
 
 export function AttendanceContent() {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [fromDate, setFromDate] = useState("");
+    const [toDate, setToDate] = useState("");
+
+    const filteredData = dummyData.filter(item => {
+        const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.position.toLowerCase().includes(searchTerm.toLowerCase());
+
+        const matchesDateRange = (!fromDate || item.date >= fromDate) &&
+            (!toDate || item.date <= toDate);
+
+        return matchesSearch && matchesDateRange;
+    });
+
+    const exportToExcel = () => {
+        const headers = ["Name", "Code", "Position", "Date", "In Time", "Out Time", "Work Hour", "Over Time", "Late Time", "Early Out", "In Location", "Out Location"];
+
+        let excelContent = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
+            <head><meta charset="UTF-8"></head>
+            <body>
+            <table border="1">
+                <thead>
+                    <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+                </thead>
+                <tbody>
+                    ${filteredData.map(row => `
+                        <tr>
+                            <td>${row.name}</td>
+                            <td>${row.code}</td>
+                            <td>${row.position}</td>
+                            <td>${row.date}</td>
+                            <td>${row.inTime}</td>
+                            <td>${row.outTime}</td>
+                            <td>${row.workHour}</td>
+                            <td>${row.overTime}</td>
+                            <td>${row.lateTime}</td>
+                            <td>${row.earlyOutTime}</td>
+                            <td>${row.inLocation}</td>
+                            <td>${row.outLocation}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            </body>
+            </html>
+        `;
+
+        const blob = new Blob([excelContent], { type: "application/vnd.ms-excel" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `attendance_${new Date().toISOString().split('T')[0]}.xls`;
+        link.click();
+    };
+    
     return (
         <>
             <h2 className="text-4xl mb-6">Attendance Content</h2>
@@ -212,7 +269,7 @@ export function AttendanceContent() {
                 <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => { }} />
                 <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => { }} />
                 <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => { }} />
-                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={() => { }} />
+                <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={exportToExcel} />
             </div>
 
             <AttendanceTable data={dummyData} />
