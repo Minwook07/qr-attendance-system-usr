@@ -1,0 +1,122 @@
+export const users = [
+    {
+        id: "1",
+        name: "Kim Ji-soo",
+        code: "EMP001",
+        position: "Backend Dev",
+        email: "jisoo_kim@gmail.com",
+        phoneNum: "0978375674",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2016/08/Jisoo-Blackpink-2025.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "2",
+        name: "Roseanne Park (Rosé)",
+        code: "EMP002",
+        position: "Testing",
+        email: "rose12_park@gmail.com",
+        phoneNum: "096183771",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2016/08/Rose-Blackpink-2025.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "3",
+        name: "Kim Jennie",
+        code: "EMP003",
+        position: "Frontend Dev",
+        email: "jennie_babeee@gmail.com",
+        phoneNum: "096673223",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2016/08/Jennie-Blackpink-2025.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "4",
+        name: "Hwang Ye-ji",
+        code: "EMP004",
+        position: "UI/UX Designer",
+        email: "yeji_hwang3@gmail.com",
+        phoneNum: "012442319",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2019/01/Yeji-6.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "5",
+        name: "Choi Ji-su (Lia)",
+        code: "EMP005",
+        position: "Project Manager",
+        email: "choi_jisu@gmail.com",
+        phoneNum: "0971232498",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2019/01/Lia-3.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "6",
+        name: "Shin Ryu-jin",
+        code: "EMP006",
+        position: "QA Engineer",
+        email: "ryu_jin@gmail.com",
+        phoneNum: "0884355672",
+        dob: "2002-03-09",
+        image: "/images/itzy/ryujin.png",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "7",
+        name: "Lee Chae-ryeong",
+        code: "EMP007",
+        position: "DevOps Engineer",
+        email: "chaeryeong99@gmail.com",
+        phoneNum: "012676745",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2019/01/Chaeryeong-6.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "8",
+        name: "Shin Yu-na",
+        code: "00X44M",
+        position: "Support Engineer",
+        email: "yuna_itzy@gmail.com",
+        phoneNum: "012563994",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2019/01/Yuna-6.jpg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "9",
+        name: "Hirai Momo",
+        code: "00X44N",
+        position: "Full Stack Dev",
+        email: "hirai-momo@gmail.com",
+        phoneNum: "096778312",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2016/05/MOMO-1-572x800.jpeg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    },
+    {
+        id: "10",
+        name: "Ning Yizhuo (NingNing)",
+        code: "00X44O",
+        position: "Intern",
+        email: "ningning78@gmail.com",
+        phoneNum: "096676549",
+        dob: "2002-03-09",
+        image: "https://kprofiles.com/wp-content/uploads/2020/10/IMG_1576-534x800.jpeg",
+        created_at: "2025-11-24",
+        updated_at: "2025-11-24"
+    }
+]
