@@ -1,6 +1,6 @@
 import { faDatabase, faQrcode, faUserClock, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { CardDashboard } from "./CardDashboard"
-import { dummyData } from "../../components/AttendanceContent"
+import { dummyData } from "../attendance/AttendanceContent"
 import { formatDate } from "../../utils/date";
 
 
