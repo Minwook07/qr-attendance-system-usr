@@ -13,7 +13,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2016/08/Jisoo-Blackpink-2025.jpg"
+        image: "/images/blackpink/jisoo.png"
     },
     {
         id: "2",
@@ -29,7 +29,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2016/08/Rose-Blackpink-2025.jpg"
+        image: "/images/blackpink/chaeyoung.png"
     },
     {
         id: "3",
@@ -45,7 +45,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2016/08/Jennie-Blackpink-2025.jpg"
+        image: "/images/blackpink/jennie.png"
     },
     {
         id: "4",
@@ -61,7 +61,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2019/01/Yeji-6.jpg"
+        image: "/images/itzy/yeji.png"
     },
     {
         id: "5",
@@ -77,7 +77,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2019/01/Lia-3.jpg"
+        image: "/images/itzy/lia.png"
     },
     {
         id: "6",
@@ -109,7 +109,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2019/01/Chaeryeong-6.jpg"
+        image: "/images/itzy/chaeryeong.png"
     },
     {
         id: "8",
@@ -125,7 +125,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2019/01/Yuna-6.jpg"
+        image: "/images/itzy/yuna.png"
     },
     {
         id: "9",
@@ -141,7 +141,7 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2016/05/MOMO-1-572x800.jpeg"
+        image: "/images/twice/momo.png"
     },
     {
         id: "10",
@@ -157,6 +157,6 @@ export const dummyData = [
         earlyOutTime: "0h",
         inLocation: "Office",
         outLocation: "Office",
-        image: "https://kprofiles.com/wp-content/uploads/2020/10/IMG_1576-534x800.jpeg"
+        image: "/images/aespa/ningning.png"
     }
 ]
