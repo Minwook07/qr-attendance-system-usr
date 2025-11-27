@@ -1,5 +1,5 @@
 import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-solid-svg-icons";
-import { ActionButton } from "./ActionButton";
+import { ActionButton } from "./action-button";
 import { AttendanceTable } from "./AttendanceTable";
 import { useState } from "react";
 import { filterAttendance } from "../utils/attendance/filterData";
