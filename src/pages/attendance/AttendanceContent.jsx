@@ -2,11 +2,11 @@ import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-so
 import { ActionButton } from "../../components/action-button";
 import { AttendanceTable } from "./AttendanceTable";
 import { useState } from "react";
-import { filterAttendance } from "../../utils/attendance/filterData";
-import { exportToCsv } from "../../utils/attendance/exportCsv";
-import { exportToPdf } from "../../utils/attendance/exportPdf";
-import { handlePrint } from "../../utils/attendance/printAttendance";
-import { exportToExcel } from "../../utils/attendance/exportExcel";
+import { filterAttendance } from "../../features/attendance/utils/format-attendance";
+import { exportToCsv } from "../../features/attendance/utils/export-csv";
+import { exportToPdf } from "../../features/attendance/utils/export-pdf";
+import { exportToExcel } from "../../features/attendance/utils/export-excel";
+import { handlePrint } from "../../features/attendance/utils/print-attendance";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { formatDate } from "../../utils/date";
