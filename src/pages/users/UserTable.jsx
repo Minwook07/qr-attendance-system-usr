@@ -1,14 +1,14 @@
 import { TableCard } from "../../components/card-table";
 
 const usrCols = [
-    { key: "id", label: "ID" },
-    { key: "code", label: "Code" },
-    { key: "name", label: "Name" },
-    { key: "position", label: "Position" },
-    { key: "email", label: "Email" },
-    { key: "phoneNum", label: "Phone Number" },
-    { key: "created_at", label: "Created_at" },
-    { key: "updated_at", label: "Updated_at" }
+    { key: "id", label: "ID", sortable: true },
+    { key: "code", label: "Code", sortable: true },
+    { key: "name", label: "Name", sortable: true },
+    { key: "position", label: "Position", sortable: false },
+    { key: "email", label: "Email", sortable: false },
+    { key: "phoneNum", label: "Phone Number", sortable: false },
+    { key: "created_at", label: "Created at", sortable: true },
+    { key: "updated_at", label: "Updated at", sortable: true },
 ]
 
 export function UserTable({ data }) {

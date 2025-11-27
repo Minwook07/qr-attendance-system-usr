@@ -2,6 +2,8 @@ import { faDatabase, faQrcode, faUserClock, faUsers } from "@fortawesome/free-so
 import { CardDashboard } from "../../components/card-dashboard";
 import { dummyData } from "../../features/attendance/utils/attendance-data";
 import { formatDate } from "../../utils/date";
+import { AlertsPanel } from "../../components/alerts-panel";
+import { alerts } from "../../utils/alert";
 
 
 export function Dashboard() {
@@ -24,11 +26,12 @@ export function Dashboard() {
     return (
         <>
             <h2 className="text-4xl mb-4">Dashboard</h2>
-            <div className="mb-10 bg-[#2d3748] text-white rounded-lg w-full py-5 px-6">
-                Nihao, and Welcome!
+            <div className="mb-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg w-full py-6 px-6 shadow-lg">
+                <h3 className="text-2xl font-bold">Nihao, and Welcome!</h3>
+                <p className="text-sm mt-2 opacity-90">Today is {today}</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                 {items.map((item, index) => (
                     <CardDashboard
                         key={index}
@@ -36,6 +39,17 @@ export function Dashboard() {
                         title={item.title}
                         bg={item.bg}
                         icon={item.icon}
+                    />
+                ))}
+            </div>
+
+            <div className="space-y-4">
+                {alerts.map((alert, index) => (
+                    <AlertsPanel
+                        key={index}
+                        icon={alert.icon}
+                        message={alert.message}
+                        type={alert.type}
                     />
                 ))}
             </div>
