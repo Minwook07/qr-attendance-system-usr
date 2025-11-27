@@ -1,4 +1,4 @@
-import { TableCard } from "./TableCard"
+import { TableCard } from "./card-table"
 
 const cols = [
     { key: "id", label: "ID" },
