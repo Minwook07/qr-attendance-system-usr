@@ -24,7 +24,7 @@ export function AttendanceTable({ data }) {
             data={data}
             cells={(key, value, row) => {
                 if (key === "name") {
-                    return <span className="font-medium text-gray-900">{value}</span>;
+                    return <span className="font-medium text-white">{value}</span>;
                 }
                 if (key === "position") {
                     return (
