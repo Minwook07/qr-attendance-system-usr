@@ -26,11 +26,11 @@ export function Dashboard() {
     ]
     return (
         <>
-            <h2 className="text-4xl mb-4">Dashboard</h2>
             <div className="space-y-6">
                 <div className="mb-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg w-full py-6 px-6 shadow-lg">
-                    <h3 className="text-2xl font-bold">Nihao, and Welcome!</h3>
-                    <p className="text-sm mt-2 opacity-90">Today is {today}</p>
+                    <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
+              <p className="text-blue-100 text-lg">Nihao, and Welcome!</p>
+              <p className="text-blue-200 text-sm mt-1">{today}</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -56,9 +56,29 @@ export function Dashboard() {
                     ))}
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
                     <div className="lg:col-span-2">
                         <QuickChart />
+                    </div>
+                    <div className="bg-[#2d3748] rounded-xl p-6 shadow-lg">
+                        <h3 className="text-xl font-bold text-white mb-4">Recent Activity</h3>
+                        <div className="space-y-3 max-h-80 overflow-y-auto">
+                            {dummyData.slice(0, 8).map((user) => (
+                                <div key={user.id} className="flex items-center justify-between p-3 bg-[#23262d] rounded-lg hover:bg-gray-900 transition-colors">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold">
+                                            {/* {user.name.charAt(0)} */}
+                                            <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
+                                        </div>
+                                        <div>
+                                            <p className="font-medium text-white">{user.name}</p>
+                                            <p className="text-xs text-gray-100">{user.lateTime !== "0h" && user.lateTime !== "0m" ? `Late: ${user.lateTime}` : "On time"}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`w-2 h-2 rounded-full ${user.lateTime !== "0h" && user.lateTime !== "0m" ? "bg-red-500" : "bg-green-500"}`}></div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
