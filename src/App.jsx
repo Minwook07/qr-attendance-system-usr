@@ -1,11 +1,11 @@
 import './App.css';
-import { AttendanceContent } from './components/AttendanceContent';
-import { Dashboard } from './components/Dashboard';
-import { Sidebar } from './components/layouts/Sidebar';
+import { AttendanceContent } from './pages/attendance/AttendanceContent';
+import { Dashboard } from './pages/dashboard/Dashboard';
+import { Sidebar } from './layouts/Sidebar';
 import { useState } from 'react';
-import { Setting } from './components/Setting';
-import { UserContentList } from './components/UserContent';
-import { users } from './utils/user/userData';
+import { Setting } from './pages/settings/Setting';
+import { UserContentList } from './pages/users/UserContent';
+import { users } from './features/users/utils/user-data';
 
 function App() {
     const [activePage, setActivePage] = useState("Dashboard");
