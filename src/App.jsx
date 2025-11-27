@@ -4,7 +4,7 @@ import { Dashboard } from './pages/dashboard/Dashboard';
 import { Sidebar } from './layouts/Sidebar';
 import { useState } from 'react';
 import { Setting } from './pages/settings/Setting';
-import { UserContentList } from './pages/users/UserContent';
+import { UserContent } from './pages/users/UserContent';
 import { users } from './features/users/utils/user-data';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
                     {activePage === "Dashboard" && <Dashboard />}
                     {activePage === "Attendance" && <AttendanceContent />}
                     {activePage === "QR" && <h1 className="text-2xl">QR Content</h1>}
-                    {activePage === "Users" && <UserContentList data={users} />}
+                    {activePage === "Users" && <UserContent data={users} />}
                     {activePage === "Settings" && <Setting />}
                 </div>
             </div>
