@@ -1,8 +1,8 @@
 export function TableCard({ columns, data, title, cells }) {
     return (
-        <div className="w-full flex flex-col h-screen max-h-[600px] bg-white rounded-xl shadow-lg">
+        <div className="w-full flex flex-col h-screen max-h-[600px] rounded-xl shadow-lg">
             {title && (
-                <h2 className="text-2xl font-bold px-6 pt-4">{title}</h2>
+                <h2 className="text-2xl font-bold pt-4 mb-4">{title}</h2>
             )}
 
             <div className="overflow-x-auto w-full bg-white rounded-lg shadow-md mt-2">
@@ -20,7 +20,7 @@ export function TableCard({ columns, data, title, cells }) {
                         </tr>
                     </thead>
 
-                    <tbody className="bg-white text-gray-700">
+                    <tbody className="bg-gray-900 text-white">
                         {data && data.length > 0 ? (
                             data.map((row, index) => (
                                 <tr key={index} className="hover:bg-gray-100">

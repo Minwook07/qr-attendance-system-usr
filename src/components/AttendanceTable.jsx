@@ -22,7 +22,7 @@ export function AttendanceTable({ data }) {
             title="Attendance List"
             columns={cols}
             data={data}
-            renderCell={(key, value, row) => {
+            cells={(key, value, row) => {
                 if (key === "name") {
                     return <span className="font-medium text-gray-900">{value}</span>;
                 }
