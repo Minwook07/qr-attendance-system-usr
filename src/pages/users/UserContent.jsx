@@ -1,4 +1,4 @@
-import { TableCard } from "./TableCard";
+import { TableCard } from "../../components/card-table";
 
 const usrCols = [
     { key: "id", label: "ID" },
