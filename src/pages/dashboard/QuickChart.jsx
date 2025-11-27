@@ -1,40 +1,84 @@
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Bar } from "react-chartjs-2";
+import { options } from "../../utils/chartjs";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
 import { dummyData } from "../../features/attendance/utils/attendance-data";
 
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
 export function QuickChart() {
-    const weekData = [
-        { day: 'Mon', attendance: 85 },
-        { day: 'Tue', attendance: 92 },
-        { day: 'Wed', attendance: 78 },
-        { day: 'Thu', attendance: 88 },
-        { day: 'Fri', attendance: 95 },
-    ];
+    // 1. Prepare weekdays you want
+    const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+    // 2. Map weekdays to attendance percentage
+    const totalUsers = dummyData.length;
+
+    // Helper: get day of week from date string
+    const getWeekDay = (dateStr) => {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString("en-US", { weekday: "short" });
+    };
+
+    const weekData = weekDays.map((day) => {
+        const attendanceCount = dummyData.filter(
+            (user) => getWeekDay(user.date) === day
+        ).length;
+
+        const attendancePercent = Math.round((attendanceCount / totalUsers) * 100);
+
+        return { day, attendancePercent };
+    });
+
+    const labels = weekData.map((d) => d.day);
+    const data = {
+        labels,
+        datasets: [
+            {
+                type: "line",
+                label: "Trend",
+                data: weekData.map((d) => d.attendancePercent),
+                borderColor: "rgba(255, 206, 86, 1)",
+                backgroundColor: "rgba(255, 206, 86, 0.2)",
+                tension: 0.4,
+                fill: true,
+            },
+            {
+                type: "bar",
+                label: "Attendance %",
+                data: weekData.map((d) => d.attendancePercent),
+                backgroundColor: "rgba(53, 162, 235, 0.5)",
+            },
+        ],
+    };
 
 
     return (
-        <div className="bg-[#2d3748] rounded-lg shadow-lg p-6 text-white">
+        <div className="bg-[#2d3748] rounded-lg shadow-lg p-6 text-white w-full">
             <h3 className="text-xl font-bold mb-4 flex items-center">
-                <FontAwesomeIcon icon={faChartLine} />
+                <FontAwesomeIcon icon={faChartLine} className="mr-2" />
                 This Week's Attendance
             </h3>
-            <div className="flex items-end justify-between h-48 space-x-2">
-                {weekData.map((data, index) => (
-                    <div className="flex-1 flex flex-col items-center">
-                        <div className="w-full bg-[#1a202c] rounded-t relative" style={{ height: '100%' }}>
-                            <div
-                                className="bg-gradient-to-t from-blue-500 to-blue-400 rounded-t absolute bottom-0 w-full transition-all duration-500 hover:from-blue-400 hover:to-blue-300"
-                                style={{ height: `${(data.attendance) * 100}%` }}
-                            >
-                                <span className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-sm font-semibold">
-                                    {data.attendance}%
-                                </span>
-                            </div>
-                        </div>
-                        <span className="text-xs mt-2 text-gray-400">{data.day}</span>
-                    </div>
-                ))}
-            </div>
+            <Bar options={options} data={data} />
         </div>
-    )
+    );
 }
