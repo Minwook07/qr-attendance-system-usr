@@ -23,7 +23,7 @@ export function TableCard({ columns, data, title, cells }) {
                     <tbody className="bg-gray-900 text-white">
                         {data && data.length > 0 ? (
                             data.map((row, index) => (
-                                <tr key={index} className="hover:bg-gray-100">
+                                <tr key={index} className="hover:bg-blue-600">
                                     {columns.map(col => (
                                         <td
                                             key={col.key}
