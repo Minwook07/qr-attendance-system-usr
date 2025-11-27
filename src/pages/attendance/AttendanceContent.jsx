@@ -22,52 +22,50 @@ export function AttendanceContent() {
     return (
         <>
             <h2 className="text-4xl mb-6">Attendance Content</h2>
-
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-                <div className="flex items-start gap-5">
-                    <div className="flex flex-col">
-                        <label htmlFor="from_date" className="mb-2 text-white font-medium">
-                            From Date
-                        </label>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-6">
+                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+                    <div className="flex flex-col w-full sm:w-auto">
+                        <label className="mb-2 text-white font-medium">From Date</label>
                         <DatePicker
                             selected={fromDate ? new Date(fromDate) : null}
                             onChange={(date) => setFromDate(formatDate(date))}
                             isClearable
                             placeholderText="Select from date"
                             className="border text-black border-gray-300 rounded-md p-2 
-                               focus:outline-none focus:ring-2 focus:ring-blue-500 
-                               focus:border-transparent"
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 
+                            focus:border-transparent w-full"
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <label htmlFor="to_date" className="mb-2 text-white font-medium">
-                            To Date
-                        </label>
+                    <div className="flex flex-col w-full sm:w-auto">
+                        <label className="mb-2 text-white font-medium">To Date</label>
                         <DatePicker
                             selected={toDate ? new Date(toDate) : null}
                             onChange={(date) => setToDate(formatDate(date))}
                             isClearable
-                            placeholderText="Select from date"
+                            placeholderText="Select to date"
                             className="border text-black border-gray-300 rounded-md p-2 
-                               focus:outline-none focus:ring-2 focus:ring-blue-500 
-                               focus:border-transparent"
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 
+                            focus:border-transparent w-full"
                         />
                     </div>
+
                 </div>
 
                 <input
                     type="search"
                     name="search"
                     id="search"
-                    placeholder="Search here by name, code, position..."
+                    placeholder="Search by name, code, position..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="border text-black border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="border text-black border-gray-300 rounded-md p-2 
+                    focus:outline-none focus:ring-2 focus:ring-blue-500 
+                    focus:border-transparent w-full sm:w-80"
                 />
             </div>
 
-            <div className="flex gap-3 justify-end mb-6">
+            <div className="flex flex-wrap gap-3 justify-end mb-6">
                 <ActionButton label="CSV" color="bg-green-500" icon={faFileCsv} onClick={() => exportToCsv(filteredData)} />
                 <ActionButton label="PDF" color="bg-red-500" icon={faFilePdf} onClick={() => exportToPdf(filteredData)} />
                 <ActionButton label="Print" color="bg-blue-500" icon={faPrint} onClick={() => handlePrint(filteredData)} />
@@ -76,5 +74,6 @@ export function AttendanceContent() {
 
             <AttendanceTable data={filteredData} />
         </>
-    )
+    );
 }
+
