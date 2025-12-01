@@ -41,7 +41,7 @@ const menu = [
 ]
 
 
-export function Sidebar({ activePage, setActivePage, openLogoutModal }) {
+export function Sidebar({ activePage, setActivePage, openLogoutModal, isOpen, setIsOpen }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (

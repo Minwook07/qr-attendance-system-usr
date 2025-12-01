@@ -12,7 +12,8 @@ import { LogoutModal } from './features/auth/components/LogoutModal'
 
 function App() {
     const [logoutOpen, setLogoutOpen] = useState(false)
-    const [activePage, setActivePage] = useState("Dashboard");
+    const [activePage, setActivePage] = useState("Dashboard")
+    const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const renderPage = () => {
         switch (activePage) {
@@ -31,7 +32,13 @@ function App() {
 
     return (
         <div>
-            <Sidebar activePage={activePage} setActivePage={setActivePage} openLogoutModal={() => setLogoutOpen(true)} />
+            <Sidebar
+                activePage={activePage}
+                setActivePage={setActivePage}
+                openLogoutModal={() => setLogoutOpen(true)}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+            />
             <LogoutModal
                 isOpen={logoutOpen}
                 onClose={() => setLogoutOpen(false)}
@@ -39,7 +46,7 @@ function App() {
                 setActivePage={setActivePage}
             />
             <div className="lg:ml-64">
-                <Navbar />
+                <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
                 <div className="p-6 mt-20">
                     {renderPage()}
                 </div>
