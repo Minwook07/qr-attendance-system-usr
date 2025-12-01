@@ -1,10 +1,10 @@
 import './App.css';
-import { AttendanceContent } from './pages/attendance/AttendanceContent';
-import { Dashboard } from './pages/dashboard/Dashboard';
+import { AttendanceContent } from './features/attendance/components/AttendanceContent';
+import { Dashboard } from './features/dashboard/components/Dashboard';
 import { Sidebar } from './layouts/Sidebar';
 import { useState } from 'react';
-import { Setting } from './pages/settings/Setting';
-import { UserContent } from './pages/users/UserContent';
+import { Setting } from './features/setting/components/Setting';
+import { UserContent } from './features/users/components/UserContent';
 import { users } from './features/users/utils/user-data';
 import { ComingSoon } from './components/coming-soon-page';
 
@@ -22,7 +22,7 @@ function App() {
             case "Settings":
                 return <Setting />
             default:
-                return <ComingSoon setActivePage={setActivePage}/>
+                return <ComingSoon setActivePage={setActivePage} />
         }
     }
 

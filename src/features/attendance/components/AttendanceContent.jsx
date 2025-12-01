@@ -1,27 +1,27 @@
 import { faFileCsv, faFileExcel, faFilePdf, faPrint } from "@fortawesome/free-solid-svg-icons";
-import { ActionButton } from "../../components/action-button";
-import { UserTable } from "./UserTable";
+import { ActionButton } from "../../../components/action-button";
+import { AttendanceTable } from "../components/AttendanceTable";
 import { useState } from "react";
-import { filterUser } from "../../features/users/utils/filter-user";
-import { users } from "../../features/users/utils/user-data";
-import { exportToCsv } from "../../features/attendance/utils/export-csv";
-import { exportToPdf } from "../../features/users/utils/export-pdf";
-import { exportToExcel } from "../../features/attendance/utils/export-excel";
-import { handlePrint } from "../../features/attendance/utils/print-attendance";
+import { filterAttendance } from "../utils/format-attendance";
+import { dummyData } from "../utils/attendance-data";
+import { exportToCsv } from "../utils/export-csv";
+import { exportToPdf } from "../utils/export-pdf";
+import { exportToExcel } from "../utils/export-excel";
+import { handlePrint } from "../utils/print-attendance";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
-import { formatDate } from "../../utils/date";
+import { formatDate } from "../../../utils/date";
 
-export function UserContent() {
+export function AttendanceContent() {
     const [searchTerm, setSearchTerm] = useState("");
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
-    const filteredData = filterUser(users, searchTerm, fromDate, toDate);
+    const filteredData = filterAttendance(dummyData, searchTerm, fromDate, toDate);
 
     return (
         <>
-            <h2 className="text-4xl mb-6">User Content</h2>
+            <h2 className="text-4xl mb-6">Attendance Content</h2>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-6">
                 <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
                     <div className="flex flex-col w-full sm:w-auto">
@@ -56,7 +56,7 @@ export function UserContent() {
                     type="search"
                     name="search"
                     id="search"
-                    placeholder="Search by name, code, position, email..."
+                    placeholder="Search by name, code, position..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="border text-black border-gray-300 rounded-md p-2 
@@ -72,7 +72,8 @@ export function UserContent() {
                 <ActionButton label="Excel" color="bg-yellow-500" icon={faFileExcel} onClick={() => exportToExcel(filteredData)} />
             </div>
 
-            <UserTable data={filteredData} />
+            <AttendanceTable data={filteredData} />
         </>
     );
 }
+
