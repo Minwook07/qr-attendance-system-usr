@@ -41,7 +41,7 @@ const menu = [
 ]
 
 
-export function Sidebar({ activePage, setActivePage }) {
+export function Sidebar({ activePage, setActivePage, openLogoutModal }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
@@ -66,7 +66,13 @@ export function Sidebar({ activePage, setActivePage }) {
                             {group.items.map((item) => (
                                 <button
                                     key={item.name}
-                                    onClick={() => setActivePage(item.name)}
+                                    onClick={() => {
+                                        if (item.name == 'Log out') {
+                                            openLogoutModal()
+                                        } else {
+                                            setActivePage(item.name)
+                                        }
+                                    }}
                                     className={`
                                         flex items-center gap-3 text-left px-4 py-2 rounded-md w-full font-medium
                                         ${activePage === item.name ? 'bg-gray-700' : 'hover:bg-gray-700'}
@@ -122,7 +128,11 @@ export function Sidebar({ activePage, setActivePage }) {
                                         <button
                                             key={item.name}
                                             onClick={() => {
-                                                setActivePage(item.name)
+                                                if (item.name == 'Log out') {
+                                                    openLogoutModal()
+                                                } else {
+                                                    setActivePage(item.name)
+                                                }
                                                 setMobileMenuOpen(false)
                                             }}
                                             className="text-left px-4 py-2 w-full hover:bg-gray-800 rounded-md"
