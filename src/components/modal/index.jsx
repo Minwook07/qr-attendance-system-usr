@@ -33,7 +33,7 @@ export function Modal({ title, children, isOpen, onClose, showCloseButton = true
             <div onClick={(e) => e.stopPropagation()} className="relative bg-[#282c34] rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all">
                 {(title || showCloseButton) && (
                     <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                        <h2 className="text-xl font-semibold text-gray-900">
+                        <h2 className="text-xl font-semibold text-white">
                             {title}
                         </h2>
                         {showCloseButton && (

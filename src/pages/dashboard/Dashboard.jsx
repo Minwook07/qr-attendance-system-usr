@@ -5,7 +5,6 @@ import { formatDate } from "../../utils/date";
 import { AlertsPanel } from "../../components/alerts-panel";
 import { alerts } from "../../utils/alert";
 import { QuickChart } from "./QuickChart";
-import { Modal } from "../../components/modal";
 
 
 export function Dashboard() {
@@ -56,8 +55,6 @@ export function Dashboard() {
                         />
                     ))}
                 </div>
-
-                <Modal />
 
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
                     <div className="lg:col-span-2">
