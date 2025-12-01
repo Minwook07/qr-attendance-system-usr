@@ -2,6 +2,7 @@ import './App.css';
 import { AttendanceContent } from './features/attendance/components/AttendanceContent';
 import { Dashboard } from './features/dashboard/components/Dashboard';
 import { Sidebar } from './layouts/Sidebar';
+import { Navbar } from './layouts/Header';
 import { useState } from 'react';
 import { Setting } from './features/setting/components/Setting';
 import { UserContent } from './features/users/components/UserContent';
@@ -30,15 +31,16 @@ function App() {
 
     return (
         <div>
-            <div className="lg:ml-64 pt-16 lg:pt-0">
-                <Sidebar activePage={activePage} setActivePage={setActivePage} openLogoutModal={() => setLogoutOpen(true)}/>
-                <LogoutModal
-                    isOpen={logoutOpen}
-                    onClose={() => setLogoutOpen(false)}
-                    onLogout={() => console.log("Logout clicked")}
-                    setActivePage={setActivePage}
-                />
-                <div className="p-6">
+            <Sidebar activePage={activePage} setActivePage={setActivePage} openLogoutModal={() => setLogoutOpen(true)} />
+            <LogoutModal
+                isOpen={logoutOpen}
+                onClose={() => setLogoutOpen(false)}
+                onLogout={() => console.log("Logout clicked")}
+                setActivePage={setActivePage}
+            />
+            <div className="lg:ml-64">
+                <Navbar />
+                <div className="p-6 mt-20">
                     {renderPage()}
                 </div>
             </div>
