@@ -2,13 +2,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Modal } from "../../../components/modal"
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 
-export function LogoutModal(isOpen, onClose) {
+export function LogoutModal({ isOpen, onClose, onLogout, setActivePage }) {
+    const handleLogout = () => {
+        localStorage.removeItem('token') || sessionStorage.removeItem('token')
+        localStorage.removeItem('user') || sessionStorage.removeItem('user')
+
+        if (onLogout) {
+            onLogout()
+        }
+
+        onClose()
+
+    }
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={"Confirm To Log out"}>
             <div className="space-y-4">
                 <div className="flex justify-center">
                     <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                        <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-red-600 w-8 h-8"/>
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-red-600 w-8 h-8" />
                     </div>
                 </div>
 
@@ -25,7 +36,12 @@ export function LogoutModal(isOpen, onClose) {
                     <button onClick={onClose} className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-medium hover:bg-gray-200 transition-colors">
                         Cancel
                     </button>
-                    <button onClick={onClose} className="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-medium hover:bg-red-700 transition-colors shadow-lg shadow-red-600/30">
+                    <button
+                        onClick={() => {
+                            handleLogout()
+                            setActivePage("Dashboard")
+                        }}
+                        className="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-medium hover:bg-red-700 transition-colors shadow-lg shadow-red-600/30">
                         Logout
                     </button>
                 </div>
