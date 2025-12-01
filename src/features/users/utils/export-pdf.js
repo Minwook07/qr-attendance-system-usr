@@ -25,7 +25,7 @@ export function exportToPdf(filteredData) {
         </head>
         <body>
             <h1>Attendance Report</h1>
-            <p>Generated on: ${new Date().toLocaleDateString()}</p>
+            <p>Generated on: ${new Date().toLocaleDateString('ko-KR', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
             <table>
                 <thead>
                     <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
