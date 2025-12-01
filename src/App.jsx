@@ -1,15 +1,19 @@
 import './App.css';
-import { AttendanceContent } from './pages/attendance/AttendanceContent';
-import { Dashboard } from './pages/dashboard/Dashboard';
+import { AttendanceContent } from './features/attendance/components/AttendanceContent';
+import { Dashboard } from './features/dashboard/components/Dashboard';
 import { Sidebar } from './layouts/Sidebar';
+import { Navbar } from './layouts/Header';
 import { useState } from 'react';
-import { Setting } from './pages/settings/Setting';
-import { UserContent } from './pages/users/UserContent';
+import { Setting } from './features/setting/components/Setting';
+import { UserContent } from './features/users/components/UserContent';
 import { users } from './features/users/utils/user-data';
 import { ComingSoon } from './components/coming-soon-page';
+import { LogoutModal } from './features/auth/components/LogoutModal'
 
 function App() {
-    const [activePage, setActivePage] = useState("Dashboard");
+    const [logoutOpen, setLogoutOpen] = useState(false)
+    const [activePage, setActivePage] = useState("Dashboard")
+    const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const renderPage = () => {
         switch (activePage) {
@@ -22,15 +26,28 @@ function App() {
             case "Settings":
                 return <Setting />
             default:
-                return <ComingSoon setActivePage={setActivePage}/>
+                return <ComingSoon setActivePage={setActivePage} />
         }
     }
 
     return (
         <div>
-            <div className="lg:ml-64 pt-16 lg:pt-0">
-                <Sidebar activePage={activePage} setActivePage={setActivePage} />
-                <div className="p-6">
+            <Sidebar
+                activePage={activePage}
+                setActivePage={setActivePage}
+                openLogoutModal={() => setLogoutOpen(true)}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+            />
+            <LogoutModal
+                isOpen={logoutOpen}
+                onClose={() => setLogoutOpen(false)}
+                onLogout={() => console.log("Logout clicked")}
+                setActivePage={setActivePage}
+            />
+            <div className="lg:ml-64">
+                <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+                <div className="p-6 mt-20">
                     {renderPage()}
                 </div>
             </div>

@@ -1,8 +1,8 @@
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Bar } from "react-chartjs-2";
-import { options } from "../../utils/chartjs";
-import { dummyData } from "../../features/attendance/utils/attendance-data";
+import { options } from "../../../utils/chartjs";
+import { dummyData } from "../../attendance/utils/attendance-data";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -13,6 +13,7 @@ import {
     BarController,
     LineController,
     Title,
+    Filler,
     Tooltip,
     Legend
 } from "chart.js";
@@ -26,6 +27,7 @@ ChartJS.register(
     BarController,
     LineController,
     Title,
+    Filler,
     Tooltip,
     Legend
 );

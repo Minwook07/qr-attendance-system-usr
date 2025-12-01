@@ -1,9 +1,9 @@
 import { faDatabase, faQrcode, faUserClock, faUsers } from "@fortawesome/free-solid-svg-icons"
-import { CardDashboard } from "../../components/card-dashboard";
-import { dummyData } from "../../features/attendance/utils/attendance-data";
-import { formatDate } from "../../utils/date";
-import { AlertsPanel } from "../../components/alerts-panel";
-import { alerts } from "../../utils/alert";
+import { CardDashboard } from "../../../components/card-dashboard";
+import { dummyData } from "../../attendance/utils/attendance-data";
+import { formatDate } from "../../../utils/date";
+import { AlertsPanel } from "../../../components/alerts-panel";
+import { alerts } from "../../../utils/alert";
 import { QuickChart } from "./QuickChart";
 
 
