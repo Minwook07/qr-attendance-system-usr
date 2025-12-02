@@ -67,7 +67,6 @@ export function Dashboard() {
                                 <div key={user.id} className="flex items-center justify-between p-3 bg-[#23262d] rounded-lg hover:bg-gray-900 transition-colors">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold">
-                                            {/* {user.name.charAt(0)} */}
                                             <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
                                         </div>
                                         <div>
