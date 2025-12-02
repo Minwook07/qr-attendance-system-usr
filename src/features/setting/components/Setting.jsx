@@ -25,11 +25,11 @@ export function Setting() {
                                         type="text"
                                         name="app_name"
                                         id="app_name"
-                                        defaultValue="OMSK"
+                                        defaultValue="Tuan Kwan"
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-500"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Enter your system name" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Enter your system name" />
                                         <span>Enter your system name</span>
                                     </small>
                                 </div>
@@ -50,7 +50,7 @@ export function Setting() {
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Set daily start time" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Set daily start time" />
                                         <span>Set daily start time</span>
                                     </small>
                                 </div>
@@ -71,7 +71,7 @@ export function Setting() {
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Set daily end time" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Set daily end time" />
                                         <span>Set daily end time</span>
                                     </small>
                                 </div>
@@ -92,8 +92,8 @@ export function Setting() {
                                         className="w-full bg-[#2c313a] border border-gray-600 text-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Upload your logo and favicon" />
-                                        <span>Upload your logo and favicon (PNG, JPG) | max 5MB</span>
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Upload your logo and favicon" />
+                                        <span>Upload your logo and favicon. <strong>Recommended size: 196px x 196px | max 5MB with Transparent background (JPEG, PNG, SVG)</strong></span>
                                     </small>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ export function Setting() {
                                 <div className="sm:w-2/6"></div>
                                 <div className="sm:w-4/6 flex-1">
                                     <div className="border-2 border-dashed border-gray-600 rounded-lg p-4 text-center bg-[#2c313a]">
-                                        <p className="text-gray-500 text-sm">Logo preview will appear here</p>
+                                        <p className="text-gray-400 text-sm">Logo preview will appear here</p>
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +118,11 @@ export function Setting() {
                                         type="text"
                                         name="copyright"
                                         id="copyright"
-                                        defaultValue="hob"
+                                        defaultValue="TuanKwan Technology"
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-500"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Copyright information" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Copyright information" />
                                         <span>Copyright name for footer</span>
                                     </small>
                                 </div>
@@ -141,10 +141,10 @@ export function Setting() {
                                         id="key_app"
                                         defaultValue="eDBGzT937i5hiysfiYrQ1vZTewfaPonMOuB4uQzx"
                                         disabled
-                                        className="w-full bg-[#1a1d24] border border-gray-700 text-gray-500 rounded-lg px-3 py-2 cursor-not-allowed"
+                                        className="cursor-text w-full bg-[#1a1d24] border border-gray-700 text-gray-200 rounded-lg px-3 py-2"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Your application key" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Your application key" />
                                         <span>Your unique application key</span>
                                     </small>
                                 </div>
@@ -168,7 +168,7 @@ export function Setting() {
                                         <option value="Asia/Ho_Chi_Minh">Asia/Seoul (GMT+9)</option>
                                     </select>
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
-                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-500" title="Select your timezone" />
+                                        <FontAwesomeIcon icon={faQuestionCircle} className="cursor-help text-gray-400" title="Select your timezone" />
                                         <span>Select your timezone</span>
                                     </small>
                                 </div>
@@ -189,11 +189,11 @@ export function Setting() {
                             <div className="flex flex-col items-center justify-center h-[400px]">
                                 <div className="w-64 h-64 bg-[#2c313a] rounded-xl flex items-center justify-center shadow-inner mb-6 border-4 border-gray-700">
                                     <div className="text-center">
-                                        <svg className="w-20 h-20 mx-auto text-gray-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-20 h-20 mx-auto text-gray-200 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                                         </svg>
-                                        <p className="text-gray-400 font-medium">QR Code Preview</p>
-                                        <p className="text-gray-500 text-sm mt-1">Scan to access system</p>
+                                        <p className="text-gray-200 font-medium">QR Code Preview</p>
+                                        <p className="text-gray-200 text-sm mt-1">Scan to access system</p>
                                     </div>
                                 </div>
 

@@ -40,7 +40,7 @@ function App() {
                 setSidebarOpen={setSidebarOpen}
             />
             <LogoutModal
-                isOpen={logoutOpen}
+                isOpen={logoutOpen}s
                 onClose={() => setLogoutOpen(false)}
                 onLogout={() => console.log("Logout clicked")}
                 setActivePage={setActivePage}
