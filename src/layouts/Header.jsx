@@ -1,11 +1,11 @@
 'use client'
 
-import { faArrowRightFromBracket, faGear, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faGear, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons/faBarsStaggered'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRef, useState } from 'react'
 
-export function Navbar({ toggleSidebar, sidebarOpen }) {
+export function Navbar({ toggleSidebar, sidebarOpen, openLogoutModal }) {
     const [isOpen, setIsOpen] = useState(false)
 
     const dropdownRef = useRef(null)
@@ -13,7 +13,7 @@ export function Navbar({ toggleSidebar, sidebarOpen }) {
     const dropdownItem = [
         { name: 'Your profile', icon: faUser },
         { name: 'Settings', icon: faGear },
-        { name: 'Sign out', icon: faArrowRightFromBracket }
+        { name: 'Log out', icon: faRightFromBracket }
     ]
     return (
         <>
@@ -37,6 +37,11 @@ export function Navbar({ toggleSidebar, sidebarOpen }) {
                         {dropdownItem.map((item, index) => (
                             <a
                                 key={index}
+                                onClick={() => {
+                                    if (item.name == 'Log out') {
+                                        openLogoutModal()
+                                    }
+                                }}
                                 href="#"
                                 className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 hover:bg-white/10"
                             >
