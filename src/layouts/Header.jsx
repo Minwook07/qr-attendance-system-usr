@@ -3,10 +3,12 @@
 import { faArrowRightFromBracket, faGear, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons/faBarsStaggered'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
-export function Navbar({ toggleSidebar }) {
+export function Navbar({ toggleSidebar, sidebarOpen }) {
     const [isOpen, setIsOpen] = useState(false)
+
+    const dropdownRef = useRef(null)
 
     const dropdownItem = [
         { name: 'Your profile', icon: faUser },
@@ -15,11 +17,11 @@ export function Navbar({ toggleSidebar }) {
     ]
     return (
         <>
-            <div className="hidden lg:flex fixed top-0 right-0 bg-gray-900 text-white justify-between items-center p-4 z-40 lg:left-64">
-                <button onClick={toggleSidebar} className="p-2">
+            <div className={`hidden lg:flex fixed top-0 right-0 bg-gray-900 text-white justify-between items-center p-4 z-40 transition-all duration-300 ${sidebarOpen ? 'left-64' : 'left-0'}`}>
+                <button onClick={toggleSidebar} className="p-2 hover:bg-gray-800 rounded-md">
                     <FontAwesomeIcon icon={faBarsStaggered} />
                 </button>
-                <div className="relative ml-3">
+                <div className="relative ml-3" ref={dropdownRef}>
                     <div className="relative cursor-pointer flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 p-0"
                         onClick={() => setIsOpen(!isOpen)}>
                         <img
@@ -29,7 +31,7 @@ export function Navbar({ toggleSidebar }) {
                         />
                     </div>
 
-                    <div className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 transition-all duration-200
+                    <div className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg transition-all duration-200
                         ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
                     `}>
                         {dropdownItem.map((item, index) => (
