@@ -9,6 +9,7 @@ import { UserContent } from './features/users/components/UserContent';
 import { users } from './features/users/utils/user-data';
 import { ComingSoon } from './components/coming-soon-page';
 import { LogoutModal } from './features/auth/components/LogoutModal'
+import { Footer } from './layouts/Footer';
 
 function App() {
     const [logoutOpen, setLogoutOpen] = useState(false)
@@ -50,6 +51,7 @@ function App() {
                 <div className="p-6 mt-20">
                     {renderPage()}
                 </div>
+                <Footer toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
             </div>
         </div>
     );

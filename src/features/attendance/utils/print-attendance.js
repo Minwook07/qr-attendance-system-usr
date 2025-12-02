@@ -21,7 +21,7 @@ export function handlePrint(filteredData) {
                 </head>
                 <body>
                     <h1>Attendance Report</h1>
-                    <p>Date: ${new Date().toLocaleDateString()}</p>
+                    <p>Date: ${new Date().toLocaleDateString('en-AU', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
                     <table>
                         <thead>
                             <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
