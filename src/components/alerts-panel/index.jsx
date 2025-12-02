@@ -4,8 +4,8 @@ export function AlertsPanel({ icon, message, type }) {
 
     const typeColors = {
         warning: 'bg-yellow-100 border-yellow-600 text-yellow-900',
-        info: 'bg-blue-200 border-blue-600 text-blue-900',
-        success: 'bg-green-100 border-green-600 text-green-900',
+        info: 'bg-blue-700 border-blue-600 text-blue-900',
+        success: 'bg-green-400 border-green-600 text-green-900',
     }
 
     const bgColor = typeColors[type] || 'bg-gray-500'
