@@ -54,7 +54,7 @@ export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpe
                     <img
                         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                         alt=""
-                        className="h-10 w-auto me-2"
+                        className="h-10 w-auto me-2 select-none pointer-events-none"
                     />
                     <span className='text-2xl font-medium text-purple-600'>{setting.sysname}</span>
                 </div>
