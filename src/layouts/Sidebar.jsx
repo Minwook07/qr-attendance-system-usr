@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faBarsStaggered,
@@ -12,8 +13,6 @@ import {
     faUser,
     faRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
-
-import { useState } from 'react'
 
 const menu = [
     {
@@ -41,15 +40,15 @@ const menu = [
 ]
 
 
-export function Sidebar({ activePage, setActivePage, openLogoutModal, isOpen, setIsOpen }) {
+export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpen }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
         <>
-            {/* Desktop Sidebar */}
-            <div className="hidden lg:flex flex-col w-64 h-screen bg-gray-900 text-white fixed left-0 top-0 pt-6">
-                {/* Logo */}
-                <div className="px-6 mb-10">
+            <div className={`hidden lg:flex flex-col h-screen bg-gray-900 text-white fixed left-0 top-0 pt-6 transition-all duration-300 overflow-hidden
+                ${sidebarOpen ? 'w-64' : 'w-0'}`}
+            >
+                <div className="px-6 mb-10 min-w-[16rem]">
                     <img
                         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                         alt=""
@@ -58,7 +57,7 @@ export function Sidebar({ activePage, setActivePage, openLogoutModal, isOpen, se
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex flex-col gap-6 px-4">
+                <nav className="flex flex-col gap-6 px-4 min-w-[16rem]:">
                     {menu.map((group) => (
                         <div key={group.title}>
                             <p className="text-gray-400 text-xs mb-2 tracking-widest">{group.title}</p>
@@ -74,7 +73,7 @@ export function Sidebar({ activePage, setActivePage, openLogoutModal, isOpen, se
                                         }
                                     }}
                                     className={`
-                                        flex items-center gap-3 text-left px-4 py-2 rounded-md w-full font-medium
+                                        flex items-center gap-3 text-left px-4 py-2 hover:bg-gray-800 rounded-md w-full font-medium
                                         ${activePage === item.name ? 'bg-gray-700' : 'hover:bg-gray-700'}
                                     `}
                                 >

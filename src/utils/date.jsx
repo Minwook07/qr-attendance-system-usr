@@ -1,7 +1,6 @@
 export function formatDate(date) {
     if (!date) return "";
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
+    const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' }
+
+    return date.toLocaleDateString("en-AU", options);
 }
