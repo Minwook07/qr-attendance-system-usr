@@ -48,7 +48,7 @@ function App() {
             />
             <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
                 <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
-                <div className="p-6 mt-20">
+                <div className="p-6 mt-20 mb-20">
                     {renderPage()}
                 </div>
                 <Footer toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
