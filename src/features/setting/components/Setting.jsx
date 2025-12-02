@@ -1,7 +1,10 @@
 import { faKey, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { settings } from "../../../utils/setting";
 
 export function Setting() {
+    const setting = settings[0]
+
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto">
@@ -25,7 +28,7 @@ export function Setting() {
                                         type="text"
                                         name="app_name"
                                         id="app_name"
-                                        defaultValue="Tuan Kwan"
+                                        defaultValue={setting.sysname}
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-500"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
@@ -46,7 +49,7 @@ export function Setting() {
                                         type="time"
                                         name="start_time"
                                         id="start_time"
-                                        defaultValue="08:00"
+                                        defaultValue={setting.start_time || "08:00"}
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
@@ -67,7 +70,7 @@ export function Setting() {
                                         type="time"
                                         name="out_time"
                                         id="out_time"
-                                        defaultValue="17:00"
+                                        defaultValue={setting.out_time || "17:00"}
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
@@ -101,8 +104,9 @@ export function Setting() {
                             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-5">
                                 <div className="sm:w-2/6"></div>
                                 <div className="sm:w-4/6 flex-1">
-                                    <div className="border-2 border-dashed border-gray-600 rounded-lg p-4 text-center bg-[#2c313a]">
-                                        <p className="text-gray-400 text-sm">Logo preview will appear here</p>
+                                    <div className="border-2 border-dashed border-gray-600 rounded-lg p-4 text-center bg-[#2c313a] flex items-center justify-center">
+                                        {/* <p className="text-gray-400 text-sm">Logo preview will appear here</p> */}
+                                        <img src={setting.logo} alt={setting.logo} />
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +122,7 @@ export function Setting() {
                                         type="text"
                                         name="copyright"
                                         id="copyright"
-                                        defaultValue="TuanKwan Technology"
+                                        defaultValue={setting.copyright || "TuanKwan Technology"}
                                         className="w-full bg-[#2c313a] border border-gray-600 text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-500"
                                     />
                                     <small className="text-gray-400 text-xs mt-1 flex items-center gap-1">
