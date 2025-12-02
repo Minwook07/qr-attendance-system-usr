@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { settings } from '../utils/setting'
 import {
     faBarsStaggered,
     faXmark,
@@ -42,18 +43,20 @@ const menu = [
 
 export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpen }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const setting = settings[0]
 
     return (
         <>
             <div className={`hidden lg:flex flex-col h-screen bg-gray-900 text-white fixed left-0 top-0 pt-6 transition-all duration-300 overflow-hidden
                 ${sidebarOpen ? 'w-64' : 'w-0'}`}
             >
-                <div className="px-6 mb-10 min-w-[16rem]">
+                <div className="px-6 mb-10 min-w-[16rem] flex items-center">
                     <img
                         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                         alt=""
-                        className="h-10 w-auto"
+                        className="h-10 w-auto me-2"
                     />
+                    <span className='text-2xl font-medium text-purple-600'>{setting.sysname}</span>
                 </div>
 
                 {/* Navigation */}

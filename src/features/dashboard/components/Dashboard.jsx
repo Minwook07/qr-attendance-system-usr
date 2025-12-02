@@ -1,5 +1,6 @@
 import { faDatabase, faQrcode, faUserClock, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { CardDashboard } from "../../../components/card-dashboard";
+import { users } from "../../users/utils/user-data";
 import { dummyData } from "../../attendance/utils/attendance-data";
 import { formatDate } from "../../../utils/date";
 import { AlertsPanel } from "../../../components/alerts-panel";
@@ -8,15 +9,15 @@ import { QuickChart } from "./QuickChart";
 
 
 export function Dashboard() {
-    const today = formatDate(new Date());
-    const totalUsr = dummyData.length;
+    const todayDisplay = formatDate({ date: new Date(), optionsType: "display" });
+    const today = formatDate({ date: new Date(), optionsType: "raw" });
+    const totalUsr = users.length;
     const totalComeLate = dummyData.filter(
         user => user.date === today && user.lateTime !== "0h" && user.lateTime !== "0m"
     ).length;
     const totalAttendanceToday = dummyData.filter(
         user => user.date === today
     ).length;
-
 
     const items = [
         { num: totalUsr, title: 'Total Users', bg: 'bg-amber-500', icon: faUsers },
@@ -29,8 +30,8 @@ export function Dashboard() {
             <div className="space-y-6">
                 <div className="mb-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg w-full py-6 px-6 shadow-lg">
                     <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
-              <p className="text-blue-100 text-lg">Nihao, and Welcome!</p>
-              <p className="text-blue-200 text-sm mt-1">{today}</p>
+                    <p className="text-blue-100 text-lg">Nihao, and Welcome!</p>
+                    <p className="text-blue-200 text-sm mt-1">{todayDisplay}</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
