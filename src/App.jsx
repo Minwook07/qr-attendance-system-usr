@@ -47,7 +47,7 @@ function App() {
                 setActivePage={setActivePage}
             />
             <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
-                <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
+                <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} openLogoutModal={() => setLogoutOpen(true)} />
                 <div className="p-6 mt-20 mb-20">
                     {renderPage()}
                 </div>
