@@ -3,7 +3,7 @@
 import { faGear, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons/faBarsStaggered'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Navbar({ toggleSidebar, sidebarOpen, openLogoutModal }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +15,31 @@ export function Navbar({ toggleSidebar, sidebarOpen, openLogoutModal }) {
         { name: 'Settings', icon: faGear },
         { name: 'Log out', icon: faRightFromBracket }
     ]
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false)
+            }
+        }
+
+        function handleEscape(event) {
+            if (event.key === 'Escape') {
+                setIsOpen(false)
+            }
+        }
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside)
+            document.addEventListener('keydown', handleEscape)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+            document.removeEventListener('keydown', handleEscape)
+        }
+    }, [isOpen])
+
     return (
         <>
             <div className={`hidden lg:flex fixed top-0 right-0 bg-gray-900 text-white justify-between items-center p-4 z-40 transition-all duration-300 ${sidebarOpen ? 'left-64' : 'left-0'}`}>
@@ -23,7 +48,10 @@ export function Navbar({ toggleSidebar, sidebarOpen, openLogoutModal }) {
                 </button>
                 <div className="relative ml-3" ref={dropdownRef}>
                     <div className="relative cursor-pointer flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 p-0"
-                        onClick={() => setIsOpen(!isOpen)}>
+                        onClick={(e) => {
+                            e.preventDefault()
+                            setIsOpen(!isOpen)
+                        }}>
                         <img
                             alt="pf-avatar"
                             src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
