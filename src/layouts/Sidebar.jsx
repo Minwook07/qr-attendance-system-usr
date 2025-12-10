@@ -1,5 +1,6 @@
 'use client'
 
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { settings } from '../utils/setting'
@@ -44,6 +45,8 @@ const menu = [
 export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpen }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const setting = settings[0]
+    const navigate = useNavigate()
+    const location = useLocation()
 
     return (
         <>
@@ -72,12 +75,13 @@ export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpe
                                         if (item.name == 'Log out') {
                                             openLogoutModal()
                                         } else {
-                                            setActivePage(item.name)
+                                            // setActivePage(item.name)
+                                            navigate(`/${item.name.toLowerCase()}`)
                                         }
                                     }}
                                     className={`
                                         flex items-center gap-3 text-left px-4 py-2 hover:bg-gray-800 rounded-md w-full font-medium
-                                        ${activePage === item.name ? 'bg-gray-700' : 'hover:bg-gray-700'}
+                                        ${location.pathname === `/${item.name.toLowerCase()}` ? 'bg-gray-700' : 'hover:bg-gray-700'}
                                     `}
                                 >
                                     {item.icon && <FontAwesomeIcon icon={item.icon} className="w-4" />}
@@ -133,7 +137,8 @@ export function Sidebar({ activePage, setActivePage, openLogoutModal, sidebarOpe
                                                 if (item.name == 'Log out') {
                                                     openLogoutModal()
                                                 } else {
-                                                    setActivePage(item.name)
+                                                    // setActivePage(item.name)
+                                                    navigate(`/${item.name.toLowerCase()}`)
                                                 }
                                                 setMobileMenuOpen(false)
                                             }}
