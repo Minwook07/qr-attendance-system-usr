@@ -3,14 +3,25 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { settings } from '../../../utils/setting';
 
-export function Login() {
+export function Login({setIsLoggedIn}) {
     const setting = settings[0]
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Login submitted', { email, password });
+
+        const usr_token = "AaBb123@@"
+
+        const usr = {
+            name: 'System Admin',
+            email
+        }
+
+        localStorage.setItem("token", usr_token)
+        localStorage.setItem("usr", JSON.stringify(usr))
+        setIsLoggedIn(true);
+        console.log('Login submitted', { usr_token, usr });
     };
 
     return (

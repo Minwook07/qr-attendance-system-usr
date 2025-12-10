@@ -3,7 +3,7 @@ import { AttendanceContent } from './features/attendance/components/AttendanceCo
 import { Dashboard } from './features/dashboard/components/Dashboard';
 import { Sidebar } from './layouts/Sidebar';
 import { Navbar } from './layouts/Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Setting } from './features/setting/components/Setting';
 import { UserContent } from './features/users/components/UserContent';
 import { users } from './features/users/utils/user-data';
@@ -17,6 +17,22 @@ function App() {
     const [logoutOpen, setLogoutOpen] = useState(false)
     const [activePage, setActivePage] = useState("Dashboard")
     const [sidebarOpen, setSidebarOpen] = useState(true)
+
+    useEffect(() => {
+        const save_token = localStorage.getItem('token')
+        const save_usr = localStorage.getItem('usr')
+
+        if (save_token && save_usr) {
+            setIsLoggedIn(true)
+        }
+    }, [])
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("usr");
+        setIsLoggedIn(false);
+        setActivePage("Dashboard");
+    };
 
     const renderPage = () => {
         switch (activePage) {
@@ -36,7 +52,7 @@ function App() {
     return (
         <>
             {!isLoggedIn ? (
-                <Login />
+                <Login setIsLoggedIn={setIsLoggedIn} />
             ) : (
                 <div>
                     <Sidebar
@@ -49,7 +65,7 @@ function App() {
                     <LogoutModal
                         isOpen={logoutOpen} s
                         onClose={() => setLogoutOpen(false)}
-                        onLogout={() => console.log("Logout clicked")}
+                        onLogout={handleLogout}
                         setActivePage={setActivePage}
                     />
                     <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
