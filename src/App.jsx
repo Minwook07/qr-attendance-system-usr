@@ -11,6 +11,7 @@ import { ComingSoon } from './components/coming-soon-page';
 import { LogoutModal } from './features/auth/components/LogoutModal'
 import { Footer } from './layouts/Footer';
 import { Login } from './features/auth/components/Login';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -34,25 +35,17 @@ function App() {
         setActivePage("Dashboard");
     };
 
-    const renderPage = () => {
-        switch (activePage) {
-            case "Dashboard":
-                return <Dashboard />
-            case "Attendance":
-                return <AttendanceContent />
-            case "Users":
-                return <UserContent data={users} />
-            case "Settings":
-                return <Setting />
-            default:
-                return <ComingSoon setActivePage={setActivePage} />
-        }
-    }
+    const ProtectedRoute = ({ children }) => {
+        return isLoggedIn ? children : <Navigate to="/login" replace />;
+    };
 
     return (
-        <>
+        <BrowserRouter>
             {!isLoggedIn ? (
-                <Login setIsLoggedIn={setIsLoggedIn} />
+                <Routes>
+                    <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+                    <Route path='*' element={<Navigate to="/login" replace />} />
+                </Routes>
             ) : (
                 <div>
                     <Sidebar
@@ -71,13 +64,37 @@ function App() {
                     <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
                         <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} openLogoutModal={() => setLogoutOpen(true)} />
                         <div className="p-6 mt-20 mb-20">
-                            {renderPage()}
+                            {
+                                <Routes>
+                                    <Route path="/dashboard" element={
+                                        <ProtectedRoute>
+                                            <Dashboard />
+                                        </ProtectedRoute>
+                                    } />
+                                    <Route path="/attendance" element={
+                                        <ProtectedRoute>
+                                            <AttendanceContent />
+                                        </ProtectedRoute>
+                                    } />
+                                    <Route path="/users" element={
+                                        <ProtectedRoute>
+                                            <UserContent data={users} />
+                                        </ProtectedRoute>
+                                    } />
+                                    <Route path="/settings" element={
+                                        <ProtectedRoute>
+                                            <Setting />
+                                        </ProtectedRoute>
+                                    } />
+                                    <Route path="*" element={<ComingSoon />} />
+                                </Routes>
+                            }
                         </div>
                         <Footer toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
                     </div>
                 </div>
             )}
-        </>
+        </BrowserRouter>
     );
 }
 

@@ -2,11 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { settings } from '../../../utils/setting';
+import { useNavigate } from 'react-router-dom';
 
 export function Login({setIsLoggedIn}) {
     const setting = settings[0]
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +23,8 @@ export function Login({setIsLoggedIn}) {
         localStorage.setItem("token", usr_token)
         localStorage.setItem("usr", JSON.stringify(usr))
         setIsLoggedIn(true);
+
+        navigate('/dashboard')
         console.log('Login submitted', { usr_token, usr });
     };
 
