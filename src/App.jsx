@@ -12,9 +12,16 @@ import { LogoutModal } from './features/auth/components/LogoutModal'
 import { Footer } from './layouts/Footer';
 import { Login } from './features/auth/components/Login';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { LoadingPlaceholder } from './components/placeholder-loading';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    // const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    //     const token = localStorage.getItem('token');
+    //     const usr = localStorage.getItem('usr');
+    //     return !!(token && usr);
+    // });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [logoutOpen, setLogoutOpen] = useState(false)
     const [activePage, setActivePage] = useState("Dashboard")
     const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -25,7 +32,11 @@ function App() {
 
         if (save_token && save_usr) {
             setIsLoggedIn(true)
+        } else {
+            setIsLoggedIn(false)
         }
+
+        setIsLoading(false)
     }, [])
 
     const handleLogout = () => {
@@ -36,8 +47,19 @@ function App() {
     };
 
     const ProtectedRoute = ({ children }) => {
-        return isLoggedIn ? children : <Navigate to="/login" replace />;
+        const token = localStorage.getItem('token')
+        const usr = localStorage.getItem('usr')
+
+        if (!token || !usr) {
+            return <Navigate to="/login" replace />;
+        }
+
+        return children;
     };
+
+    if(isLoading) {
+        return <LoadingPlaceholder />
+    }
 
     return (
         <BrowserRouter>
